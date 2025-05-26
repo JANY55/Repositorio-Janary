@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SMART CLASS</title>
+  <style>
+    :root {
+      --azul-petroleo: #1b3b4d;
+      --azul-claro: #3f6474;
+      --fondo-claro: #f4f7f9;
+      --blanco: #ffffff;
+      --verde: #2ecc71;
+      --gris-claro: #f1f1f1;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--fondo-claro);
+      color: #333;
+    }
+
+    header {
+      background-color: var(--azul-petroleo);
+      color: var(--blanco);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    header img {
+      max-width: 100px; /* Tamaño incrementado del logo */
+      margin-right: 20px;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    section {
+      background-color: var(--blanco);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: relative;
+      transition: box-shadow 0.3s ease;
+    }
+
+    section:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra al pasar el mouse */
+    }
+
+    h2 {
+      color: var(--azul-petroleo);
+      font-size: 1.5rem;
+      border-bottom: 2px solid var(--azul-petroleo);
+      padding-bottom: 5px;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: var(--azul-petroleo);
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: var(--azul-petroleo);
+      color: white;
+      border: none;
+      margin-top: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: var(--azul-claro);
+    }
+
+    .oculto {
+      display: none;
+    }
+
+    .flecha {
+      background: rgba(0, 0, 0, 0.1);
+      border: none;
+      color: var(--azul-petroleo);
+      font-size: 1.5rem;
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease;
+    }
+
+    .flecha:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .superior-izq {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .inferior-der {
+      text-align: right;
+      margin-top: 1rem;
+    }
+
+    /* Estilo para los elementos de la lista de docentes */
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background-color: var(--gris-claro);
+      margin-bottom: 1rem;
+      padding: 0.8rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    li:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Estilos para dispositivos móviles */
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.2rem;
+      }
+
+      main {
+        padding: 1rem;
+        max-width: 100%;
+      }
+
+      section {
+        padding: 1rem;
+      }
+
+      .flecha {
+        font-size: 1.2rem;
+        padding: 0.3rem 0.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="imagen/logoproy.png" alt="Logo SMART CLASS" />
+    <h1>SMART CLASS</h1>
+  </header>
+
+  <main>
+    <!-- Login -->
+    <section id="loginSection">
+      <h2>Iniciar Sesión</h2>
+      <form id="loginForm">
+        <label for="usuario">Usuario:</label>
+        <input type="text" id="usuario" required>
+
+        <label for="clave">Contraseña:</label>
+        <input type="password" id="clave" required>
+
+        <button type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <!-- Panel Principal -->
+    <section id="panel" class="oculto">
+      <h2>Panel Principal</h2>
+      <button onclick="mostrarSeccion('registroDocente')">Registro de Docente</button>
+      <button onclick="mostrarSeccion('asignacionClases')">Asignación de Clases</button>
+      <button onclick="mostrarSeccion('adminDocentes')">Administrar Información de Docentes</button>
+      <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </section>
+
+    <!-- Registro de Docente -->
+    <section id="registroDocente" class="oculto">
+      <button class="flecha superior-izq" onclick="mostrarSeccion('panel')">← Atrás</button>
+      <h2>Registro de Docente</h2>
+      <form id="formRegistro">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+
+        <label for="documento">N° Documento:</label>
+        <input type="text" id="documento" required>
+
+        <label for="especialidad">Especialidad:</label>
+        <select id="especialidad" required>
+          <option value="">Seleccionar</option>
+          <option value="Matemáticas">Matemáticas</option>
+          <option value="Lengua">Lengua</option>
+          <option value="Historia">Historia</option>
+          <option value="Ciencias">Ciencias</option>
+        </select>
+
+        <button type="submit">Registrar</button>
+      </form>
+      <div class="inferior-der">
+        <button class="flecha" onclick="mostrarSeccion('asignacionClases')">Seguir →</button>
+      </div>
+    </section>
+
+    <!-- Asignación de Clases -->
+    <section id="asignacionClases" class="oculto">
+      <button class="flecha superior-izq" onclick="mostrarSeccion('registroDocente')">← Atrás</button>
+      <h2>Asignación de Clases</h2>
+      <button onclick="asignarClases()">Asignar Clases</button>
+      <div id="resultadoAsignacion" style="margin-top: 1rem;"></div>
+      <div class="inferior-der">
+        <button class="flecha" onclick="mostrarSeccion('adminDocentes')">Seguir →</button>
+      </div>
+    </section>
+
+    <!-- Administración de Docentes -->
+    <section id="adminDocentes" class="oculto">
+      <button class="flecha superior-izq" onclick="mostrarSeccion('asignacionClases')">← Atrás</button>
+      <h2>Administrar Información de Docentes</h2>
+      <ul id="listaDocentes"></ul>
+    </section>
+  </main>
+
+  <script>
+    const docentes = [];
+    const usuarios = [{ usuario: "admin", clave: "admin123" }];
+
+    const secciones = ["loginSection", "panel", "registroDocente", "asignacionClases", "adminDocentes"];
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const usuario = document.getElementById("usuario").value;
+      const clave = document.getElementById("clave").value;
+      const valido = usuarios.find(u => u.usuario === usuario && u.clave === clave);
+
+      if (valido) {
+        mostrarSeccion("panel");
+      } else {
+        alert("Usuario o contraseña incorrectos.");
+      }
+    });
+
+    function mostrarSeccion(id) {
+      secciones.forEach(sec => {
+        document.getElementById(sec).classList.add("oculto");
+      });
+      document.getElementById(id).classList.remove("oculto");
+      if (id === "adminDocentes") {
+        mostrarListaDocentes();
+      }
+    }
+
+    function cerrarSesion() {
+      mostrarSeccion("loginSection");
+      document.getElementById("loginForm").reset();
+    }
+
+    document.getElementById("formRegistro").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nombre = document.getElementById("nombre").value;
+      const documento = document.getElementById("documento").value;
+      const especialidad = document.getElementById("especialidad").value;
+
+      docentes.push({ nombre, documento, especialidad });
+      alert(`Docente ${nombre} registrado.`);
+      this.reset();
+    });
+
+    function asignarClases() {
+      const resultado = docentes.length > 0 ? 
+        docentes.map(d => `<li>${d.nombre} ha sido asignado a clases de <strong>${d.especialidad}</strong>.</li>`).join("") :
+        "<p>No hay docentes registrados aún.</p>";
+
+      document.getElementById("resultadoAsignacion").innerHTML = `<ul>${resultado}</ul>`;
+    }
+
+    function mostrarListaDocentes() {
+      const lista = docentes.map(d => `<li>${d.nombre} | Documento: ${d.documento} | Especialidad: ${d.especialidad}</li>`).join("");
+      document.getElementById("listaDocentes").innerHTML = lista || "<p>No hay docentes registrados.</p>";
+    }
+  </script>
+</body>
+</html>

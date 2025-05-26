@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <button onclick="mostrarSeccion('crear')">Crear Profesor</button>
+    <button onclick="mostrarSeccion('actualizar')">Actualizar Materia</button>
+    <button onclick="mostrarSeccion('observar')">Horario</button>
+  </header>
+
+  <main>
+    <section id="crear">
+      <h2>Crear Profesor</h2>
+      <label>Nombre: <input type="text"></label><br>
+      <label>Cédula: <input type="text"></label><br>
+      <label>Asignatura: <input type="text"></label>
+    </section>
+
+    <section id="actualizar" style="display:none;">
+      <h2>Actualizar Materia</h2>
+      <label>Cédula: <input type="text"></label><br>
+      <label>Materia Actual: <input type="text"></label><br>
+      <label>Nueva Materia: <input type="text"></label>
+    </section>
+
+    <section id="observar" style="display:none;">
+      <h2>Observar Profesores</h2>
+      <p>Lista de profesores con sus materias</p>
+    </section>
+  </main>
+
+  <script>
+    function mostrarSeccion(id) {
+      document.querySelectorAll("main section").forEach(sec => sec.style.display = "none");
+      document.getElementById(id).style.display = "block";
+    }
+
+    // Mostrar primero Crear Profesor
+    mostrarSeccion('crear');
+  </script>
+</body>
+</html>
